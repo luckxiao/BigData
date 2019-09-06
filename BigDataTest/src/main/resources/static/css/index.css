@@ -1,0 +1,120 @@
+#perinfo{
+    text-align: center;
+}
+#container{
+    width:600px;
+    height:300px;
+    overflow: hidden;
+    border:3px solid #333333;
+    position: relative;
+    left:28%;
+}
+#list{
+    width:4200px;
+    height:300px;
+    position: absolute;
+    z-index: 1;
+    left:-600px;
+}
+#list img{
+    float: left;
+}
+
+#buttons {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    z-index: 2;
+    bottom:20px;
+    left:250px;
+}
+#buttons span{
+    cursor: pointer;
+    float: left;
+    border: 1px solid #ffffff;
+    width:10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #333333;
+    margin-right: 5px;
+}
+#buttons .on{
+    background: orangered;
+}
+.arrow{
+    cursor: pointer;
+    display: none;
+    line-height: 39px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    width:40px;
+    height: 40px;
+    position: absolute;
+    z-index: 2;
+    top:130px;
+    background-color: RGBA(0,0,0,.3);
+    color: #ffffff;
+    text-decoration: none;
+}
+#container:hover .arrow{
+    display: block;
+}
+.arrow:hover{
+    background-color: RGBA(0,0,0,.7);
+}
+#prev{
+    left: 20px;
+}
+#next{
+    right: 20px;
+}
+.anchorBL{
+    display:none;
+}
+#body{
+    padding: 0px; margin: 0px; background-image: url(../img/homebg.jpg); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;
+}
+#container1{
+    padding: 0px;margin: 0px; padding-top: 5%; padding-left: 23%;
+    background-image: url(../img/homebg.jpg); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;
+}
+#container2{
+    width: 70%; height: 80%; padding: 0px; margin: 0px; background-color:rgba(204,204,204,0.4); overflow: hidden; float: left
+}
+#hand{
+    position: absolute; top: 80%;left:98%; height: 10%;width: 2%; overflow: hidden; background-color: white; cursor:pointer; margin: 0px; padding: 10px 6px;
+}
+#leftMenu{
+    width: 13%;margin: 0px;padding: 0px;overflow-x: hidden; background: #2e3037
+}
+#down{
+    height: 100px; background-color: #3d3d3d
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* 定位 */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

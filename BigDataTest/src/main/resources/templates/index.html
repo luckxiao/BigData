@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:formatter="http://www.w3.org/1999/xhtml">
+<head>
+    <!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />-->
+    <meta charset="UTF-8">
+    <title>大数据测试平台</title>
+    <script type="text/javascript" src="/jquery-easyui/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/jquery-easyui/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/jquery-easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="/jquery-easyui/demo/demo.css"/>
+    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=yGMx8q12cH3kfRc0tmpN54dGcQh9MGvH"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <script src="/js/echarts.min.js"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="sidemenu_style.css">-->
+</head>
+<body id="body" class="easyui-layout">
+    <!--标题栏-->
+    <div data-options="region:'north', title:'智能交通平台', border:false, collapsible:false"></div>
+
+    <!--中间主页面-->
+    <div id="container1" data-options="region:'center', border:false">
+
+        <!--标注-->
+        <div id="label" style="width: 2%; height: 80%; padding: 0px; margin: 0px; float: left">
+            <button class="green" style=" width: 100%;padding: 5px 0px 5px 0px;  border-radius: 5px">通畅</button>
+            <button class="yellow" style=" width: 100%;padding: 5px 0px 5px 0px; border-radius: 5px">正常</button>
+            <button class="red" style=" width: 100%;padding: 5px 0px 5px 0px; border-radius: 5px">拥挤</button>
+        </div>
+
+
+        <div id="container2">
+            <!--<video style="height: 100%; width: 100%" controls="controls" preload="auto" >-->
+                <!--<source src="./video/bigVideo.mp4" type="video/mp4" />-->
+            <!--</video>-->
+
+            <!--时间选择框-->
+            <div id="timeChoose" style="width: 80%; height: 47%; margin: 2.5%; padding-top: 10%; padding-left:15%; margin-left: 10%;">
+                <h3>请选择日期以及时间：</h3>
+                <!--日期时间框-->
+                <input id="dt" type="text" style="width: 60%;">
+            </div>
+
+            <!--地点选择框-->
+            <div id="areaChoose" style="width: 80%; height: 47%; margin: 2.5%; padding-left:15%; margin-left: 10%">
+                <!--<h3>请选择地点信息：</h3>-->
+
+                <!--&lt;!&ndash;地点选择框&ndash;&gt;-->
+                <!--<input id="pb1" type="text" title="省：" style="width: 31%; margin: 1%; padding: 0px">-->
+                <!--<input id="pb2" type="text" title="市/县：" style="width: 31%; margin: 1%; padding: 0px">-->
+                <!--<input id="pb3" type="text" title="区：" style="width: 31%; margin: 1%; padding: 0px">-->
+                <div style="width: 24%; height: 100%; margin: 0px; padding: 0px; margin-right: 1%; float: left">
+                    <h3>省份</h3>
+                    <input id="cc1" value="省份">
+                </div>
+
+                <div style="width: 24%; height: 100%; margin: 0px; padding: 0px; margin-right: 1%; float: left">
+                    <h3>市/县</h3>
+                    <input id="cc2" value="市">
+                </div>
+
+                <div style="width: 24%; height: 100%; margin: 0px; padding: 0px; margin-right: 1%; float: left">
+                    <h3>区/县</h3>
+                    <input id="cc3" value="区/县">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--导航栏设置，管理员权限-->
+        <div id="win" class="easyui-window" title="设置" style="width:400px;height:400px;overflow-x: hidden"
+             data-options="iconCls:'icon-save',modal:true,collapsible:false,minimizable:false">
+            <div class="easyui-layout" data-options="fit:true">
+
+                <div data-options="region:'center',split:true">
+                    <table id="tt" style="margin-left: 25%"></table>
+                </div>
+
+                <div data-options="region:'south'" style="height: 35px; overflow: hidden">
+                    <a id="addMenu" onclick="addItem()" class="easyui-linkbutton">添加</a>
+                    <a id="removeMenu" onclick="rmItem()" class="easyui-linkbutton">删除</a>
+                    <a id="alertMenu" onclick="alertItem()" class="easyui-linkbutton">修改</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!--底部隐藏栏-->
+        <div id="hand">
+            隐藏
+        </div>
+    </div>
+
+
+    <!--左侧菜单-->
+    <div id="leftMenu" data-options="region:'west',collapsed:true, border:false" onload="toggle()">
+
+        <div style="margin: 0px; padding: 0px" align="center">
+            <div class="tooltip">
+                <!--用户头像-->
+                <img  src="./img/user.jpg" width="80%" style="padding: 0px; margin: 0px; margin-top: 1%;border-radius: 6px" onclick="toggle()">
+                <span class="tooltiptext">点击刷新菜单栏</span>
+            </div>
+            <div id="menuSet" class="icon-lock" style="width: 80%; height: 5%; cursor:pointer;color: white; margin-top: 2%; margin-bottom: 2%" onclick="menuSet()">设置</div>
+
+            <!--管理员权限-->
+            <!--<a id="add" class="userPower" style="visibility: hidden" onclick="addItem()">增加栏目</a>-->
+
+            <!--功能分类列表-->
+            <div id="sm" style="width: 80%; margin: 0px; padding: 0px;"></div>
+
+
+        </div>
+
+
+    </div>
+
+<!--下部搜索框-->
+    <div id="down" class="easyui-layout" data-options="region:'south', border:false, iconCls:'icon-lock', collapsible:true">
+        <!--搜索引擎-->
+        <div style="
+        position: absolute; left: 10%;  width: 80%; height: 80px;margin: 0px; padding: 0px;
+        ">
+            <!--搜索框-->
+            <input id="search" class="easyui-validatebox" type="text" style="
+            width: 70%; position: absolute; top: 40%; left: 5%;">
+            <!--按钮-->
+            <a href="javascript:void(0)" style="position: absolute; top: 5%; right: 5%;margin: 0px; padding: 0px;
+            " onclick="index()">
+                <img src="./img/SEARCH.jpg" height="90px" style="margin: 0px;padding: 0px;">
+            </a>
+        </div>
+
+        <!--标识-->
+        <div id="foot" data-options="region:'south'" style="overflow-y: hidden;width: 100%;backgrouqnd-color: white">
+            <span style="float: right;height: 20px">
+                © 2019-2050 <a href="http://cs.cust.edu.cn/rl/" target="_blank">日立责任有限公司</a>
+            </span>
+        </div>
+    </div>
+
+</body>
+</html>
